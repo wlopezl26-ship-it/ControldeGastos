@@ -1,23 +1,22 @@
 package edu.umg.programacion2.edu.umg.programacion2.Ingresos.Datos
 
-import edu.umg.programacion2.edu.umg.programacion2.Ingresos.Modelo.Ingresos
-import edu.umg.programacion2.edu.umg.programacion2.gastos.modelo.Gastos
+import edu.umg.programacion2.edu.umg.programacion2.Ingresos.Modelo.ingresos
 
 
-class IngresoRepositoryEnMemoria : IngresoRepository{
-    private val ingresos = mutableListOf<Ingresos>()
+class ingresoRepositoryEnMemoria : ingresoRepository{
+    private val ingresos = mutableListOf<ingresos>()
     private var siguienteId = 1
 
-    override suspend fun agregar(ingreso: Ingresos): Ingresos {
+    override suspend fun agregar(ingreso: ingresos): ingresos {
         val guardado= ingreso.copy(id= siguienteId)
         siguienteId++
         ingresos.add(guardado)
         return guardado
     }
-    override suspend fun listar(): List<Ingresos> = ingresos.toList()
+    override suspend fun listar(): List<ingresos> = ingresos.toList()
 
 
-    override suspend fun buscarPorId(id: Int): Ingresos? {
+    override suspend fun buscarPorId(id: Int): ingresos? {
         for (gastos in ingresos) {
             if (gastos.id == siguienteId) {
                 return gastos}
@@ -25,7 +24,7 @@ class IngresoRepositoryEnMemoria : IngresoRepository{
         return null
     }
 
-    override suspend fun actualizar(ingreso: Ingresos): Boolean {
+    override suspend fun actualizar(ingreso: ingresos): Boolean {
         val posicion = buscarPosicion(ingreso.id)
         if (posicion == -1) {
             return false

@@ -5,7 +5,7 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-object BanguatService {
+object banguatService {
 
     private var tipoCambioGuardado: Double = 7.75
 

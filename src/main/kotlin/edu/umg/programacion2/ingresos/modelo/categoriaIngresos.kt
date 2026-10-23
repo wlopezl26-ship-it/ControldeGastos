@@ -1,6 +1,6 @@
 package edu.umg.programacion2.edu.umg.programacion2.Ingresos.Modelo
 
-enum class CategoriaIngresos (val nombreVisible: String) {
+enum class categoriaIngresos (val nombreVisible: String) {
         SALARIO("Salario"),
         TRABAJOSEXTRA("Trabajos Extra"),
         BECA("Beca"),

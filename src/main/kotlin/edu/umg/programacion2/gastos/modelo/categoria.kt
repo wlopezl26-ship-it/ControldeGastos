@@ -1,6 +1,6 @@
 package edu.umg.programacion2.edu.umg.programacion2.gastos.modelo
 
-enum class Categoria(val nombreVisible: String) {
+enum class categoria(val nombreVisible: String) {
     ALIMENTACION("Alimentación"),
     TRANSPORTE("Transporte"),
     ESTUDIOS("Estudios"),

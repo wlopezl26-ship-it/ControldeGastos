@@ -8,7 +8,7 @@
                            ^groupId           ^artifactId ^version -->
     <groupId>umg.edu.gt.progra2</groupId>
     <artifactId>controldegastos</artifactId>
-    <version>1.0.0</version>
+    <version>3.4.1</version>
     <packaging>jar</packaging>
 
     <name>Control de Gastos</name>
@@ -29,20 +29,21 @@
     </properties>
 
     <dependencies>
-        <!-- IMPORTANTE: la UNICA dependencia es la libreria estandar de Kotlin.
-             No hay nada de Android aqui: por eso el mismo codigo sirve en consola y en el telefono. -->
+        <!-- Librería estándar de Kotlin -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
+
+        <!-- Corutinas de Kotlin para llamadas suspend y runBlocking -->
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core</artifactId>
+            <version>1.7.3</version>
         </dependency>
     </dependencies>
+
 
     <build>
         <!-- Solo hay codigo Kotlin, asi que Maven busca los fuentes en src/main/kotlin. -->

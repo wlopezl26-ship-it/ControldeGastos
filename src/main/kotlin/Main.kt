@@ -1,16 +1,31 @@
 package edu.umg.programacion2
 
-//TIP Para <b>ejecutar</b> el código, pulsa <shortcut actionId="Run"/> o
-// haga clic en el icono <icon src="AllIcons.Actions.Execute"/> del margen.
-fun main() {
-    val name = "Kotlin"
-    //TIP Presione <shortcut actionId="ShowIntentionActions"/> con el cursor en el texto resaltado
-    // para ver cómo IntelliJ IDEA sugiere corregirlo.
-    println("Hello, " + name + "!")
+import edu.umg.programacion2.edu.umg.programacion2.gastos.Datos.gastoRepositoryEnMemoria
+import edu.umg.programacion2.edu.umg.programacion2.Ingresos.Datos.ingresoRepositoryEnMemoria
+import edu.umg.programacion2.edu.umg.programacion2.gastos.modelo.categoria
+import edu.umg.programacion2.edu.umg.programacion2.Ingresos.Modelo.categoriaIngresos
+import edu.umg.programacion2.edu.umg.programacion2.Servicios.banguatService
+import edu.umg.programacion2.edu.umg.programacion2.Servicios.controlGastos
+import kotlinx.coroutines.runBlocking
 
-    for (i in 1..5) {
-        //TIP Presiona <shortcut actionId="Debug"/> para comenzar a depurar tu código. Hemos establecido un punto de interrupción <icon src="AllIcons.Debugger.Db_set_breakpoint"/>
-        // para ti, pero siempre puedes añadir más pulsando <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
+
+fun main() = runBlocking  {
+
+    val repoGastos = gastoRepositoryEnMemoria()
+    val repoIngresos = ingresoRepositoryEnMemoria()
+    val control = controlGastos(repoGastos, repoIngresos)
+
+    println("=== Prueba de libreria gastos core===")
+
+    val tasaUSD = banguatService.obtenerTipoCambioDia()
+    println("El tipo de cambio Obtenida del BanGuat oficial es de: Q. $tasaUSD")
+
+    val errIngreso = control.registrarIngreso("Sueldo", 4000.0, categoriaIngresos.SALARIO, "20/10/2026")
+    val errGasto = control.registrarGasto("Almuerzo", 50.0, categoria.ALIMENTACION, "20/10/2026")
+
+    if (errIngreso != null) println("Error en ingreso: $errIngreso")
+    if (errGasto != null) println("Error en gasto: $errGasto")
+
+    println(control.resumen())
+
     }
-}
