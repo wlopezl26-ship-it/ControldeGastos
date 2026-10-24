@@ -35,7 +35,7 @@ class gastoRepositoryEnMemoria : gastoRepository {
     }
 
     override suspend fun eliminar(id: Int): Boolean {
-    val posicion = buscarPosicion(id)
+        val posicion = buscarPosicion(id)
         if (posicion == -1) {
             return false
         }
